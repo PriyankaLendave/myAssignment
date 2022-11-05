@@ -1,0 +1,61 @@
+
+.container{
+    height: 100%;
+    margin-bottom: 100px;
+}
+
+.icon{
+    margin-top: 30px;
+    margin-bottom: 20px;
+    
+}
+.in{
+    margin-bottom: 100px;
+    border-radius: 30px;
+    padding: 8px;
+    width: 150px;
+    color:white;
+    
+}
+
+
+.side{
+    margin-top: 170px;
+    color: white;
+}
+.form-control{
+    background-color:lightgray;
+    
+}
+
+ul li{
+    list-style: none;
+    display: inline;
+}
+
+ul li a i{
+    border: 1px solid;
+    border-color: aqua;
+    border-radius: 50%;
+    padding: 8px;
+    margin-right: 10px;
+    color: black;
+}
+
+
+
+.buttons {
+    width: 200px;
+    display: inline;
+    margin-bottom: 100px;
+}
+
+#button1{
+    margin-right: 150px;
+}
+
+
+#button2 {
+margin-left: 15px;
+}
+

@@ -1,0 +1,101 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <a class="navbar-brand mt-2 mt-lg-0" href="#"> Project Name
+      </a>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Home</a>
+        </li>
+      </ul>
+    </div>
+    
+    <div class="d-flex align-items-center">
+      <h6>Welcome Mr.{{userName}} </h6> 
+      <button class="btn btn-info"><a class="nav-link active" aria-current="page" href="./login">Log Out</a></button>
+    </div>
+  </div>
+</nav>
+
+
+<section class="h-100 bg-image"
+  style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
+
+  <div class="container h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+
+      <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+        <div class="card" style="border-radius: 15px;">
+
+          <form [formGroup]="myReactiveForm" (ngSubmit)="OnSubmit(myReactiveForm)">
+            <div class="Form-Group">
+              <label for="name">Name:-</label>
+              <input type="text" id="name" class="form-control" name="name" formControlName="name">
+            </div>
+            <div class="Form-Group">
+              <label for="mobile">Mobile No:-</label>
+              <input type="number" id="mobile" class="form-control" name="mobile" formControlName="mobile">
+            </div>
+
+            <div class="Form-Group">
+              <label for="address">Address:-</label>
+                <input type="address" id="address" class="form-control" name="address" formControlName="address">
+            </div>
+
+            <div class="Form-Group" formArrayName="skills">
+              <label for="skills">Skills:-</label>
+              <ng-container *ngFor="let skill of myReactiveForm.get('skills').controls; index as i ">
+                <div class="row">
+                  <div class="col-md-10">
+                    <input type="text" class="form-control " placeholder="Enter skills" formControlName="{{i}}"
+                      name="skill">
+                  </div>
+                  <div class="col-md-2 ">
+                    <button type="reset" (click)="deletSkill(i)">Delete</button>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+            <button class="btn btn-light btn-sm mt-4 btn-add" (click)="OnAddSkills()"><i>+</i>Add Skills</button>
+
+            <div class="Form-Group">
+              <label for="hobbies">Hobbies:-</label>
+              <input type="text" id="hobbies" class="form-control" name="hobbies" formControlName="hobbies">
+            </div>
+
+            <div class="Form-Group col-md-9 pe-5">
+              <label for="photo">Upload Ur Photo:-</label>
+              <input type="file" id="photo" class="form-control form-control-sm" name="photo" formControlName="photo">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" (click)="add()">Submit</button>
+
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Mobile No.</th>
+          <th>Address</th>
+          <th>Skills</th>
+          <th>Hobbies</th>
+          <th>Photo</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let newEntry of newtableinformation">
+          <td>{{newEntry.name}}</td>
+          <td>{{newEntry.mobile}}</td>
+          <td>{{newEntry.address}}</td>
+          <td>{{newEntry.skills}}</td>
+          <td>{{newEntry.hobbies}}</td>
+          <td>{{newEntry.photo}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
