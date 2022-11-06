@@ -1,6 +1,7 @@
+<div class="container shadow py-1">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <a class="navbar-brand mt-2 mt-lg-0" href="#"> Project Name
       </a>
@@ -10,92 +11,120 @@
         </li>
       </ul>
     </div>
-    
+
     <div class="d-flex align-items-center">
-      <h6>Welcome Mr.{{userName}} </h6> 
-      <button class="btn btn-info"><a class="nav-link active" aria-current="page" href="./login">Log Out</a></button>
+      <h6 style="margin-top: 10px;">Welcome Mr.{{userName}} </h6>
+      <button class="btn btn-info"><a class="nav-link active" aria-current="page" (click)="logout()">Log
+          Out</a></button>
     </div>
   </div>
 </nav>
 
 
-<section class="h-100 bg-image"
-  style="background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');">
+<div class="container h-100">
+  <div class="row d-flex justify-content-center align-items-center h-100">
 
-  <div class="container h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="col-md-4 shadow px-1 mt-2">
 
-      <div class="col-12 col-md-9 col-lg-7 col-xl-6">
-        <div class="card" style="border-radius: 15px;">
-
-          <form [formGroup]="myReactiveForm" (ngSubmit)="OnSubmit(myReactiveForm)">
-            <div class="Form-Group">
-              <label for="name">Name:-</label>
-              <input type="text" id="name" class="form-control" name="name" formControlName="name">
-            </div>
-            <div class="Form-Group">
-              <label for="mobile">Mobile No:-</label>
-              <input type="number" id="mobile" class="form-control" name="mobile" formControlName="mobile">
-            </div>
-
-            <div class="Form-Group">
-              <label for="address">Address:-</label>
-                <input type="address" id="address" class="form-control" name="address" formControlName="address">
-            </div>
-
-            <div class="Form-Group" formArrayName="skills">
-              <label for="skills">Skills:-</label>
-              <ng-container *ngFor="let skill of myReactiveForm.get('skills').controls; index as i ">
-                <div class="row">
-                  <div class="col-md-10">
-                    <input type="text" class="form-control " placeholder="Enter skills" formControlName="{{i}}"
-                      name="skill">
-                  </div>
-                  <div class="col-md-2 ">
-                    <button type="reset" (click)="deletSkill(i)">Delete</button>
-                  </div>
-                </div>
-              </ng-container>
-            </div>
-            <button class="btn btn-light btn-sm mt-4 btn-add" (click)="OnAddSkills()"><i>+</i>Add Skills</button>
-
-            <div class="Form-Group">
-              <label for="hobbies">Hobbies:-</label>
-              <input type="text" id="hobbies" class="form-control" name="hobbies" formControlName="hobbies">
-            </div>
-
-            <div class="Form-Group col-md-9 pe-5">
-              <label for="photo">Upload Ur Photo:-</label>
-              <input type="file" id="photo" class="form-control form-control-sm" name="photo" formControlName="photo">
-            </div>
-          </form>
+      <form [formGroup]="myReactiveForm" (ngSubmit)="OnSubmit(myReactiveForm)">
+        <div class="Form-Group">
+          <label for="name">Name:-</label>
+          <input type="text" id="name" class="form-control" name="name" formControlName="name">
+          <small class="text-danger" *ngIf="!myReactiveForm.get('name').valid
+                   && myReactiveForm.get('name').touched">
+            <span *ngIf="myReactiveForm.get('name').errors['required']">
+              Name is required
+            </span>
+          </small>
         </div>
-      </div>
+        <div class="Form-Group">
+          <label for="mobile">Mobile No:-</label>
+          <input type="number" id="mobile" class="form-control" name="mobile" formControlName="mobile">
+          <small class="text-danger" *ngIf="!myReactiveForm.get('mobile').valid
+              && myReactiveForm.get('mobile').touched">
+            <span *ngIf="myReactiveForm.get('mobile').errors['required']">
+              Mobile No. is required
+            </span>
+            <span *ngIf="myReactiveForm.get('mobile').errors['pattern']">Please, Enter 10 digit Mobile Number.</span>
+          </small>
+        </div>
+
+        <div class="Form-Group">
+          <label for="address">Address:-</label>
+          <input type="address" id="address" class="form-control" name="address" formControlName="address">
+          <small class="text-danger" *ngIf="!myReactiveForm.get('address').valid
+                && myReactiveForm.get('address').touched">
+            <span *ngIf="myReactiveForm.get('address').errors['required']">
+              Address is required
+            </span>
+          </small>
+
+        </div>
+
+        <div class="Form-Group" formArrayName="skills">
+          <label for="skills">Skills:-</label>
+          <ng-container *ngFor="let skill of myReactiveForm.get('skills').controls; index as i ">
+            <div class="row">
+              <div class="col-md-9">
+                <input type="text" class="form-control " placeholder="Enter skills" formControlName="{{i}}"
+                  name="skill">
+              </div>
+              <div class="col-md-2 ">
+                <button type="reset" class="btn btn-success" (click)="deletSkill(i)">Delete</button>
+              </div>
+            </div>
+          </ng-container>
+          <button class="btn btn-light btn-sm mt-4 btn-add" (click)="OnAddSkills()"><i>+</i>Add Skills</button>
+          <!-- <small class="text-danger" *ngIf="!myReactiveForm.get('skills.skills').valid
+          && myReactiveForm.get('skills.skills').touched">
+            <span *ngIf="myReactiveForm.get('skills.skills').errors['required']">Please Enter atLeast one Skill </span>
+          </small> -->
+
+
+        </div>
+
+
+        <div class="Form-Group">
+          <label for="hobbies">Hobbies:-</label>
+          <input type="text" id="hobbies" class="form-control" name="hobbies" formControlName="hobbies">
+        </div>
+
+        <div class="Form-Group col-md-9 pe-5">
+          <label for="photo">Upload Ur Photo:-</label>
+          <input type="file" id="photo" class="form-control form-control-sm" name="photo" formControlName="photo">
+        </div>
+      </form>
     </div>
-
-    <button type="submit" class="btn btn-primary" (click)="add()">Submit</button>
-
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Mobile No.</th>
-          <th>Address</th>
-          <th>Skills</th>
-          <th>Hobbies</th>
-          <th>Photo</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let newEntry of newtableinformation">
-          <td>{{newEntry.name}}</td>
-          <td>{{newEntry.mobile}}</td>
-          <td>{{newEntry.address}}</td>
-          <td>{{newEntry.skills}}</td>
-          <td>{{newEntry.hobbies}}</td>
-          <td>{{newEntry.photo}}</td>
-        </tr>
-      </tbody>
-    </table>
   </div>
-</section>
+
+  <button type="submit" *ngIf="!isEdit" class="btn btn-primary" (click)="add()">Submit</button>
+
+  <button type="submit" *ngIf="isEdit" class="btn btn-primary" (click)="add()">Update</button>
+
+  <table class="table table-responsive table-bordered">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Mobile No.</th>
+        <th>Address</th>
+        <th>Skills</th>
+        <th>Hobbies</th>
+        <th>Photo</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="nth-row(even)" *ngFor="let newEntry of newtableinformation">
+        <td>{{newEntry.name}}</td>
+        <td>{{newEntry.mobile}}</td>
+        <td>{{newEntry.address}}</td>
+        <td>{{newEntry.skills}}</td>
+        <td>{{newEntry.hobbies}}</td>
+        <td>{{newEntry.photo}}</td>
+        <td><a [routerLink]="" (click)="edit(newEntry)">Edit </a> | <a [routerLink]=""
+            (click)="delete(newEntry)">Delete</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>

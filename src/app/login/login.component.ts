@@ -8,14 +8,12 @@ import { BindUsernameService } from '../Services/bind-username.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-   userName;
+  msg;
   constructor(private route:Router, private service:BindUsernameService ) {
-    this.service.userName.subscribe((data=>{
-      this.userName=data}))
-   }
+
+  }
 
   ngOnInit() {
-
     
   }
   
@@ -24,7 +22,7 @@ export class LoginComponent implements OnInit {
     if(output==true){
       this.route.navigate(['./home'])
     }else{
-      
+      this.msg="username and password required"
     }
 
     

@@ -10,9 +10,9 @@ export class BindUsernameService {
   constructor() { }
 
   checkUserNameandPassword(uname:string, pwd:string) {
-    if(uname == "!null" && pwd == "!null")
+    if(uname == "admin" && pwd == "admin123")
     {
-      localStorage.setItem('userName', 'password');
+      localStorage.setItem('userName', uname);
       return true;
     }
     else {
